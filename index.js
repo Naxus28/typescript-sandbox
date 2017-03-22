@@ -6,3 +6,8 @@ console.log(list);
 console.log(listOne);
 console.log(listTwo); // undefined
 // listTwo[0] = 10; // Cannot set property '0' of undefined
+// arrays can also be declared like this
+var numList = [4, 5, 6];
+var nameList = ['Gabriel', 'Paulo', 'Chris'];
+console.log(numList);
+console.log(nameList);
