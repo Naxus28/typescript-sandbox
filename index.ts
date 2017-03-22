@@ -1,21 +1,26 @@
+/*
+he never type represents the type of values that never occur. 
+For instance, never is the return type for a function expression or an arrow function expression that always throws an exception or one that never returns; 
+Variables also acquire the type never when narrowed by any type guards that can never be true.
+The never type is a subtype of, and assignable to, every type; however, no type is a subtype of, or assignable to, never (except never itself). Even any isn’t assignable to never.
+ */
 
-//Tuple types allow us to express an array where the type of a fixed number of elements is known, but need not be the same. 
-//For example, we can have a string and a number
+// Function returning never must have unreachable end point
+function error(message: string): never {
+    throw new Error(message);
+}
 
-let tuple: [string, number]; // declare the tuple
-tuple = ['Hello', 10]; // initialize it
-tuple[3] = 5; // assign elements outside of the known indices assigned -- has to be either of the types expressed on the declaration otherwise it will error out
+// Inferred return type is never
+function fail() {
+    return error("Something failed");
+}
 
-console.log('tuple: ', tuple); // [ 'Hello', 10, , 5 ] -- notice it is missing index 2, which is assigned an empty string
-console.log('tuple length: ', tuple.length); // 4
+// Function returning never must have unreachable end point
+function infiniteLoop(): never {
+    while (true) {
+    }
+}
 
-// need to declare and initialize array on the same statement
-let list: number[] = [1, 2, 3];
-let listOne: number[] = [];
-let listTwo: number[]; //this returns type 'undefined'; it is useless because since it is not an array we cannot assign any values to it
-
-console.log(list);
-console.log(listOne);
-console.log(listTwo); // undefined
-// listTwo[0] = 10; // Cannot set property '0' of undefined
-
+error('an error ocurred'); // throws error and execution stops
+fail(); // throws error and execution stops
+// infiniteLoop();
