@@ -1,20 +1,44 @@
-/*
-Type assertions are a way to tell the compiler “trust me, I know what I’m doing.”
-A type assertion is like a type cast in other languages, but performs no special checking or restructuring of data.
-It has no runtime impact, and is used purely by the compiler.
-TypeScript assumes that you, the programmer, have performed any special checks that you need.
+// without interface
+/**
+ * The printLabel function has a single parameter that requires that the object passed in
+ * has a property called label of type string. Notice that our object actually has more properties t
+ * han this, but the compiler only checks that at least the ones required are present and match the types required.
  */
-// Type assertions have two forms. One is the “angle-bracket” syntax and as-syntax:
-var someValue = "this is a string"; // this variable can be reassigned to any type
-var strLengthAngBracket = someValue.length; // this could also simply be written as 'let strLengthAngBracket: number = someValue.length;''
-// OR
-var strLengthAs = someValue.length;
-console.log('strLengthAngBracket: ', strLengthAngBracket);
-console.log('strLengthAs: ', strLengthAs);
-// another example
-var numStr = '10'; // this variable type can't be reassigned
-var num = 20;
-var concatValues = numStr + num; // concats values
-console.log('concatValues: ', concatValues); //1020
-var castNumStr = parseInt(numStr); // this could also simply be written as 'let castNumStr: number = parseInt(numStr);'
-console.log(castNumStr + num); // 30
+function printLabel(labelledObj) {
+    console.log(labelledObj.label);
+}
+var myObj = { size: 10, label: "Size 10 Object" };
+printLabel(myObj);
+function printLabelInFace(labelledObj) {
+    console.log(labelledObj.label);
+}
+var myObjInFace = { size: 10, label: "Size 10 Object" };
+printLabelInFace(myObj);
+// not the best idea to return a string from a math method but this is just
+// for practice--the design of this method is also not that great
+function integerPower(numbers) {
+    var result;
+    if (numbers.base === 0) {
+        result = 0;
+    }
+    else if (numbers.exponent === 0) {
+        result = 1;
+    }
+    else {
+        result = numbers.base;
+        for (var i = 1; i < Math.abs(numbers.exponent); i++) {
+            result *= numbers.base;
+        }
+        if (numbers.exponent < 0) {
+            result = '1/' + result.toString();
+        }
+    }
+    return result;
+}
+var pOfTwo = integerPower({ base: 5, exponent: 2 });
+var pOfZero = integerPower({ base: 0, exponent: 4 });
+var pOfMinus2 = integerPower({ base: 5, exponent: -2 });
+console.log(pOfTwo);
+console.log(pOfZero);
+console.log(pOfMinus2);
+///////////////////////
