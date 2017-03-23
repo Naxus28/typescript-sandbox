@@ -8,7 +8,7 @@
  * StringArray index signature states that when a StringArray is indexed with a number, it will return a string.
  */
 interface StringArray {
-   [index: number]: string;
+  [index: number]: string;
 }
 
 let myArray: StringArray;
@@ -40,18 +40,22 @@ console.log(profession);
  * That means that indexing with 100 (a number) is the same thing as indexing with "100" (a string), so the two need to be consistent.
  */
 
+// Error: indexing with a 'string' will sometimes get you a Dog!
+interface NotOkay {
+  [x: number]: Animal; // indexer is a number and accepts an obj of type 'Animal'
+  [x: string]: Dog; // indexer is a string and accepts an obj of type 'Dog'
+}
+
 class Animal {
   name: string;
 }
+
+// because 'Dog' extends 'Animal' and their indexers are different this will cause an error
 class Dog extends Animal {
   breed: string;
 }
 
-// Error: indexing with a 'string' will sometimes get you a Dog!
-interface NotOkay {
-  [x: number]: Animal;
-  [x: string]: Dog;
-}
+
 
 
 
