@@ -24,7 +24,7 @@ interface IBoat{
 }
 
 class Boat implements IBoat{  
-  // need to declare these two props of the class
+  // need to declare these two props of the class to fulfill IBoats' signature
   // they are public by default but we can add the keyword if we want
   public engine: string; 
   public color: string;
