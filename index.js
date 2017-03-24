@@ -1,6 +1,8 @@
 /**
- * Similarly to how we can use interfaces to describe function types, we can also describe types that we can “index into”
- * like a[10], or ageMap["daniel"]. Indexable types have an index signature that describes the types we can use to index into
+ * Similarly to how we can use interfaces to describe function types,
+ * we can also describe types that we can “index into”
+ * like a[10], or ageMap["daniel"]. Indexable types have an index signature that describes
+ * the types we can use to index into
  * the object, along with the corresponding return types when indexing. Let’s take an example:
  */
 var __extends = (this && this.__extends) || (function () {
