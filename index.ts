@@ -46,26 +46,35 @@ interface Person {
 }
 
 interface Profession {
-  profession: {name: string, field: string, company: string};
+  profession: {name: string, field?: string, company?: string};
 }
 
 // could have done it like this as well: 
 // interface Profession extends Person, then interface Engineer extends Profession
-// in this case I don't think it matters becuase a professional needs to be a person
+// in this case I don't think it matters because a professional needs to be a person
 // and an engineer is a person with a profession
 interface Engineer extends Person, Profession {
 }
 
-let joe = <Engineer>{};
+interface Nurse extends Person, Profession {
+}
 
+let joe = <Engineer>{};
 joe.name = 'Joe';
 joe.age = 33;
 joe.profession = {name:'Engineer', field: 'Software', company: 'Apple'} ;
+console.log(joe.name + ': ' + joe.profession.name + ' ' + joe.profession.field + ' ' + joe.profession.company);
 
-console.log(joe.name);
-console.log(joe.profession.name);
-console.log(joe.profession.field);
-console.log(joe.profession.company);
+// this could be done as such as well:
+let jade: Nurse = {
+  name: 'Jade',
+  age: 33,
+  profession: {
+    name:'Nurse', 
+    company: 'Florida Hospital'
+  }
+};
+console.log(jade.name + ': ' + jade.profession.company);
 
 
 
